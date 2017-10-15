@@ -1,5 +1,10 @@
+import os
 from flask_script import Manager, Server
-from webapp import app
+from webapp import create_app
+
+env = os.environ.get('WEBAPP_ENV', 'dev')
+
+app = create_app('webapp.config.%sConfig' % env.capitalize())
 
 manager = Manager(app)
 
